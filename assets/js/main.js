@@ -228,78 +228,104 @@
 
 })();
 
-const formulario = document.getElementById('formulario');
-formulario.addEventListener('submit', (event) => {
-event.preventDefault();
-
-const servicio = document.getElementById('servicio').value;
-const email = document.getElementById('email').value;
-if(servicio === "" || email == "") {
-  alert("Por favor rellene todos los campos")
-  return;
-}
-alert("Muchas gracias, pronto un asesor se comunicará contigo")
-const datos = {
-servicio: servicio,
-email: email,
-};
-fetch('https://dawm-ca66c-default-rtdb.firebaseio.com/collection.json', {
-method: 'POST',
-body: JSON.stringify(datos),
-headers: {
-'Content-Type': 'application/json'
-}
-})
-.then(respuesta => respuesta.json())
-.then(datos => {
-console.log(datos); 
-})
-.catch(error => console.error(error));
+document.addEventListener("DOMContentLoaded", function() {
+  const formulario = document.getElementById('formulario');
+  formulario.addEventListener('submit', manejarEnvioFormulario);
+  obtenerDatos();
 });
 
-window.addEventListener("DOMContentLoaded", function() {
-  async function obtenerDatos() {
-    const url = "https://dawm-ca66c-default-rtdb.firebaseio.com/collection.json"; 
-    const respuesta = await fetch(url);
-    
-    if (!respuesta.ok) {
-      console.error("Error:", respuesta.status);
+function manejarEnvioFormulario(event) {
+  event.preventDefault();
+
+  const servicio = document.getElementById('servicio').value;
+  const email = document.getElementById('email').value;
+
+  if (!validarDatosFormulario(servicio, email)) {
+      alert("Por favor rellene todos los campos");
       return;
-    }
-    
-    const datos = await respuesta.json();
-    
-    if (datos !== "") {
-      // Objeto para almacenar el recuento de cada servicio
+  }
+
+  const datos = {
+      servicio: servicio,
+      email: email,
+  };
+
+  enviarDatos(datos);
+}
+
+function validarDatosFormulario(servicio, email) {
+  return servicio !== "" && email !== "";
+}
+
+function enviarDatos(datos) {
+  fetch('https://dawm-ca66c-default-rtdb.firebaseio.com/collection.json', {
+      method: 'POST',
+      body: JSON.stringify(datos),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  .then(respuesta => respuesta.json())
+  .then(datos => {
+      manejarRespuesta(datos);
+      limpiarFormulario();
+      obtenerDatos();
+  })
+  .catch(error => console.error(error));
+}
+
+function manejarRespuesta(datos) {
+  console.log(datos);
+  alert("Datos enviados con éxito, pronto un asesor se contactará contigo");
+}
+
+function limpiarFormulario() {
+  document.getElementById('formulario').reset();
+}
+
+async function obtenerDatos() {
+  const url = "https://dawm-ca66c-default-rtdb.firebaseio.com/collection.json"; 
+  try {
+      const respuesta = await fetch(url);
+
+      if (!respuesta.ok) {
+          console.error("Error:", respuesta.status);
+          return;
+      }
+
+      const datos = await respuesta.json();
+      mostrarDatos(datos);
+  } catch (error) {
+      console.error("Error:", error);
+  }
+}
+
+function mostrarDatos(datos) {
+  if (datos !== "") {
       let conteoServicios = {};
       
-      // Iterar sobre los valores de datos
       for (const key in datos) {
-        const dato = datos[key];
-        const servicio = dato.servicio;
-        if (conteoServicios[servicio]) {
-          conteoServicios[servicio]++;
-        } else {
-          conteoServicios[servicio] = 1;
-        }
+          const dato = datos[key];
+          const servicio = dato.servicio;
+          if (conteoServicios[servicio]) {
+              conteoServicios[servicio]++;
+          } else {
+              conteoServicios[servicio] = 1;
+          }
       }
       
-      // Mostrar los recuentos en la página HTML
       let tablabody = document.getElementById("tablebody");
+      tablabody.innerHTML = '';  
       for (const servicio in conteoServicios) {
-        let template = `
-          <tr>
-            <td>${servicio}</td>
-            <td>${conteoServicios[servicio]}</td>
-          </tr>
-        `;
-        tablabody.innerHTML += template;
+          let template = `
+            <tr>
+              <td>${servicio}</td>
+              <td>${conteoServicios[servicio]}</td>
+            </tr>
+          `;
+          tablabody.innerHTML += template;
       }
-    }
-    
-    console.log(datos); 
   }
-  
-  obtenerDatos(); 
-});
 
+  console.log(datos); 
+}
