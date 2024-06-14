@@ -22,17 +22,17 @@
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #222222; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #106eea; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #DB526C; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --contrast-color: #ffffff; /* The contrast color is used for elements when the background color is one of the heading, accent, or default colors. Its purpose is to ensure proper contrast and readability when placed over these more dominant colors */
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
   --nav-color: #222222;  /* The default color of the main navmenu links */
-  --nav-hover-color: #106eea; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-hover-color: #DB526C; /* Applied to main navmenu links when they are hovered over or active */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #222222; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #106eea; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-hover-color: #DB526C; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Smooth scroll */
@@ -143,7 +143,7 @@ h6 {
 }
 
 .header .logo h1 {
-  font-size: 30px;
+  font-size: 25px;
   margin: 0;
   font-weight: 600;
   color: var(--heading-color);
@@ -151,7 +151,7 @@ h6 {
 
 .header .logo span {
   color: var(--accent-color);
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 700;
 }
 
@@ -824,13 +824,13 @@ section,
   padding: 60px 0;
   display: flex;
   align-items: center;
-  background: url("../img/hero-bg.jpg") top left;
   background-size: cover;
+  background-color: #FCFFFC;
 }
 
 .hero:before {
   content: "";
-  background: color-mix(in srgb, var(--contrast-color), transparent 30%);
+  background-color: #FCFFFC;
   position: absolute;
   bottom: 0;
   top: 0;
@@ -869,7 +869,7 @@ section,
   letter-spacing: 1px;
   display: inline-block;
   padding: 12px 30px;
-  border-radius: 4px;
+  border-radius: 15px;
   transition: 0.5s;
   box-shadow: 0 8px 28px color-mix(in srgb, var(--accent-color), transparent 80%);
 }
@@ -906,8 +906,31 @@ section,
 
 .hero .animated {
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
+  box-sizing: border-box;
 }
 
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px; 
+  overflow: hidden;
+  padding: 0; 
+  border: none; 
+  box-sizing: border-box;
+  user-select: none; 
+  pointer-events: none; 
+}
+
+video {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0; 
+  border: none; 
+  box-sizing: border-box;
+  user-select: none; 
+  pointer-events: none; 
+}
 @media (max-width: 640px) {
   .hero h1 {
     font-size: 28px;
@@ -1009,42 +1032,42 @@ section,
   font-size: 26px;
 }
 
-.about .about-content ul {
+.about .caract ul {
   list-style: none;
   padding: 0;
 }
 
-.about .about-content ul li {
+.about .caract ul li {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 
-.about .about-content ul li:first-child {
+.about .caract ul li:first-child {
   margin-top: 35px;
 }
 
-.about .about-content ul i {
+.about .caract ul i {
   background: var(--contrast-color);
   box-shadow: 0px 6px 15px color-mix(in srgb, var(--accent-color), transparent 90%);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 64px;
-  height: 64px;
+  width: 55px;
+  height: 55px;
   font-size: 24px;
   margin-right: 15px;
   color: var(--accent-color);
   border-radius: 50px;
 }
 
-.about .about-content ul h4 {
+.about .caract ul h4 {
   font-size: 18px;
   font-weight: 600;
 }
 
-.about .about-content ul p {
+.about .caract ul p {
   font-size: 15px;
 }
 
@@ -1092,6 +1115,7 @@ section,
 /*--------------------------------------------------------------
 # Stats Section
 --------------------------------------------------------------*/
+
 .stats i {
   background-color: var(--accent-color);
   color: var(--contrast-color);
