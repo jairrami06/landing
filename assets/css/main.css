@@ -984,8 +984,8 @@ video {
   }
 
   .mayor {
-    margin-top: 5px;
-    padding-top: 5px;
+    margin-top: 10px;
+    padding-top: 10px;
   }
 
   .hero .btn-get-started,
@@ -993,7 +993,7 @@ video {
     font-size: 15px;
     font-weight: bold;
     padding: 10px 20px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
   }
 
   .video-container {
