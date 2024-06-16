@@ -409,6 +409,11 @@ h6 {
 .footer .footer-newsletter {
   background-color: color-mix(in srgb, var(--accent-color), transparent 96%);
   padding: 50px 0;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column; 
+  margin-top: 20px;
 }
 
 .footer .footer-newsletter h4 {
@@ -416,6 +421,8 @@ h6 {
 }
 
 .footer .footer-newsletter .newsletter-form {
+  width: 80%; 
+  max-width: 400px;
   margin-top: 30px;
   padding: 6px 8px;
   position: relative;
@@ -443,6 +450,12 @@ h6 {
   background-color: var(--contrast-color);
   color: var(--default-color);
   transition: 0.3s;
+}
+
+#formulario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer .footer-newsletter .newsletter-form input[type=email]:focus-visible,
@@ -498,6 +511,11 @@ h6 {
   animation: subscription-loading 1s linear infinite;
 }
 
+.footer-newsletter .container .section-title {
+  padding-bottom: 1px;
+}
+
+
 @keyframes subscription-loading {
   0% {
     transform: rotate(0deg);
@@ -506,8 +524,6 @@ h6 {
     transform: rotate(360deg);
   }
 }
-
-/* Additional CSS for footer layout */
 
 .footer .footer-top {
   padding-top: 50px;
@@ -817,6 +833,7 @@ section,
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
+/* Hero Section */
 .hero {
   width: 100%;
   min-height: 75vh;
@@ -877,7 +894,7 @@ section,
 .hero .btn-get-started:hover {
   color: var(--contrast-color);
   background: color-mix(in srgb, var(--accent-color), transparent 15%);
-  box-shadow: 0 8px 28px color-mix(in srgb, var(--accent-color), transparent 55%);
+  box-shadow: 0 8px 28px color-mix(in srgb, var (--accent-color), transparent 55%);
 }
 
 .hero .btn-watch-video {
@@ -931,23 +948,63 @@ video {
   user-select: none; 
   pointer-events: none; 
 }
-@media (max-width: 640px) {
+
+@media (max-width: 991.98px) {
+  .hero .order-2 {
+    order: 1 !important;
+  }
+
+  .hero .order-1 {
+    order: 2 !important;
+  }
+
+  .hero {
+    margin-top: 10px;
+    padding: 30px 0;
+  }
+
   .hero h1 {
-    font-size: 28px;
-    line-height: 36px;
+    font-size: 50px;
+    line-height: 55px;
   }
 
   .hero p {
     font-size: 18px;
     line-height: 24px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+  }
+
+  .mayor {
+    margin-top: 5px;
   }
 
   .hero .btn-get-started,
   .hero .btn-watch-video {
-    font-size: 13px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+  }
+
+  .video-container {
+    width: 250px;
+  }
+
+  .row.gy-4 {
+    flex-direction: column;
+    align-items: center;
   }
 }
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+
 
 @keyframes up-down {
   0% {
@@ -969,6 +1026,9 @@ video {
   height: 100%;
   position: relative;
   z-index: 1;
+  text-align: center; 
+  min-width: 250px; 
+  flex: 1; 
 }
 
 .featured-services .service-item:before {
@@ -980,14 +1040,11 @@ video {
   z-index: -1;
 }
 
-.featured-services .service-item .icon {
+.featured-services .service-item .counter {
   margin-bottom: 10px;
-}
-
-.featured-services .service-item .icon i {
-  color: var(--accent-color);
-  font-size: 36px;
-  transition: ease-in-out 0.3s;
+  font-size: 36px; 
+  font-weight: bold; 
+  color: var(--accent-color); 
 }
 
 .featured-services .service-item h4 {
@@ -1001,16 +1058,8 @@ video {
   transition: ease-in-out 0.3s;
 }
 
-.featured-services .service-item p {
-  line-height: 24px;
-  font-size: 14px;
-  margin-bottom: 0;
-  transition: ease-in-out 0.3s;
-}
-
 .featured-services .service-item:hover h4 a,
-.featured-services .service-item:hover .icon i,
-.featured-services .service-item:hover p {
+.featured-services .service-item:hover .counter {
   color: var(--contrast-color);
 }
 
@@ -1019,6 +1068,7 @@ video {
   inset: 0;
   border-radius: 0px;
 }
+
 
 /*--------------------------------------------------------------
 # About Section
@@ -2010,11 +2060,4 @@ video {
 .portfolio-details .portfolio-description p {
   padding: 0;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
-}
-
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
 }

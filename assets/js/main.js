@@ -131,7 +131,6 @@
   /**
    * Initiate Pure Counter
    */
-  new PureCounter();
 
   /**
    * Init swiper sliders
@@ -314,18 +313,25 @@ function mostrarDatos(datos) {
           }
       }
       
-      let tablabody = document.getElementById("tablebody");
-      tablabody.innerHTML = '';  
+      let servicesContainer = document.getElementById("services-container");
+      servicesContainer.innerHTML = '';  
+      let delay = 100;
       for (const servicio in conteoServicios) {
           let template = `
-            <tr>
-              <td>${servicio}</td>
-              <td>${conteoServicios[servicio]}</td>
-            </tr>
+            <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="${delay}">
+              <div class="service-item position-relative">
+                <div class="counter">
+                  <span data-purecounter-start="0" data-purecounter-end="${conteoServicios[servicio]}" data-purecounter-duration="1" class="purecounter"></span>
+                </div>
+                <h4><a href="" class="stretched-link">${servicio}</a></h4>
+              </div>
+            </div>
           `;
-          tablabody.innerHTML += template;
+          servicesContainer.innerHTML += template;
+          delay += 100; // Incrementar el delay para el efecto de aparición
       }
-  }
 
-  console.log(datos); 
+      // Iniciar PureCounter después de actualizar el DOM
+      new PureCounter();
+  }
 }
