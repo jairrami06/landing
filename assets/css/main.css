@@ -838,7 +838,7 @@ section,
   width: 100%;
   min-height: 75vh;
   position: relative;
-  padding: 60px 0;
+  padding: 50px 0;
   display: flex;
   align-items: center;
   background-size: cover;
@@ -859,6 +859,10 @@ section,
   position: relative;
 }
 
+#inicio {
+  margin-top: 0px;
+  padding-top: 0px;
+}
 .hero h1 {
   margin: 0;
   font-size: 48px;
@@ -963,30 +967,41 @@ video {
     padding: 30px 0;
   }
 
+  #inicio {
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+
   .hero h1 {
-    font-size: 50px;
-    line-height: 55px;
+    font-size: 37px;
+    line-height: 40px;
   }
 
   .hero p {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 24px;
     margin-bottom: 20px;
   }
 
   .mayor {
-    margin-top: 5px;
+    margin-top: 0px;
+    padding-top: 0px;
   }
 
   .hero .btn-get-started,
   .hero .btn-watch-video {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     padding: 10px 20px;
+    margin-bottom: 0px;
   }
 
   .video-container {
     width: 250px;
+  }
+
+  video {
+    height: 220px;
   }
 
   .row.gy-4 {
